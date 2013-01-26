@@ -1,0 +1,314 @@
+﻿Notes:
+  Feel free to use any javascript library you like for any of the answers, but please make a note that you are using library XXX in your response.
+
+
+
+
+Question 1: What are the maximum number of higher or lower questions that you have to ask to find out a birthday if the month is given?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Question 2: I was taking a break from writing code to help my friend sort some tennis balls in his garage. There are three boxes that are all mislabeled (orange, white, mixed).  One box contains orange balls, one contains white balls, and one contains a mix of white and orange balls. Without looking in the box, and choosing just one ball, how would you correctly label all the boxes?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Question 3: what does this function do?
+
+
+
+
+var Module = function() {
+  var self = this;
+  this.mc = {};
+
+
+
+
+  this.f = function(name) {
+    var x = self.mc[name] = {};
+    var b = self[name];
+    self[name] = function() {
+      var args = Array.prototype.slice.call(arguments);       
+      x[args] = x[args] || b.apply(this, arguments);
+      return x[args]; 
+    };
+  };
+};
+
+
+
+
+
+
+
+
+Bonus: Write a test that asserts it is working properly.
+
+
+
+
+Answer:
+
+
+- This is a module definition. Module returns nothing.
+- Module modifies calling object context by adding to it property mc and function f. In case of global context window it will get property mc and function f. See test3Runner.html "creates 'window.mc' property and 'window.f' function" test.
+- Calling window.f(‘test_func’) creates window.’test_func’ function. See test3Runner.html "creates 'window.test_func' function" test.
+- Calling dinamicly created function test_func causes error because of var b = self[name]; b is undefined
+test is written with help of jasmine.js 
+
+
+
+
+Question 4: Your goal is to produce an xml file that contains the number
+of balloons created on each day for the last 365 days. The format of
+the resulting xml file is as follows:
+
+
+
+
+<balloons codeA='101' status_code="ebutuoy">
+  <balloon_counts>
+...
+<count date="2006::09::04__">1</count>
+<count date="2006::09::05__">88</count>
+<count date="2006::09::06__">0</count>
+<count date="2006::09::07__">2919</count>
+...
+</balloon_counts>
+</balloons>
+
+
+
+
+The model object for which you are producing counts is
+called Balloon, and it maintains a date property called "created_at"
+which is automatically initialized at the time of each object's
+creation.
+
+
+
+
+Given an array of “Balloon” objects, write a function that produces the xml desired.
+
+
+
+
+var generateBalloonXML = function(balloons) {
+   …..
+   return xml;
+};
+
+
+
+
+How would you modify this function to perform the same action on an
+object that contains an arbitrary datetime field that the
+function is given as an argument? Please include code.
+
+
+Answer:
+see test4.html console output
+in my example datetime property is initialised by arbitrary value
+
+
+
+
+
+
+
+
+Question 5: 
+Given an array of objects, each with a “test” function and a “value” function, write a function that returns an index of value -> object, but only including those objects whose test returns true.
+
+
+
+
+ie: Given [
+  { name: ‘a’, test: function() { return true; }, value: function() { return 1; }  },
+  { name: ‘b’, test: function() { return true; }, value: function() { return 1; }  },
+  { name: ‘c’, test: function() { return false; }, value: function() { return 1; }  },
+  { name: ‘d’, test: function() { return true; }, value: function() { return 2; }  },
+] 
+the result should be:
+{ 1: [ the ‘a’ object’, the ‘b’ object’], 2: [ the ‘d’ object ] }
+
+
+
+
+Answer:
+see test5.html console output
+with help of uderscore.js lib 
+
+
+
+
+
+
+
+
+
+
+
+
+Question 6: Assume you have an array of Plate objects, each with an array of forks. Each Fork has an integer property called "shinyness". Write a javascript statement that sorts Plates
+according to the combined shinyness field of their associated Forks.
+
+
+
+
+var Plate = function(forks) {
+  this.forks = forks;
+};
+var Fork = function(shinyness) {
+  this.shinyness = shinyness;
+};
+
+
+
+
+var plates = [
+  new Plate([ new Fork(1), new Fork(4), new Fork(7) ]),
+  new Plate([ new Fork(9) ]),
+  new Plate([ new Fork(21), new Fork(3) ])
+];
+
+
+Answer:
+see test6.html console output
+with help of uderscore.js lib 
+
+
+
+
+Question 7: Assume the above Plates and Forks. Write a statement to sort the Plates by the number of Forks associated with each Plate.
+
+
+
+
+Answer:
+see test7.html console output
+with help of uderscore.js lib 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Question 8: Write a function that extends the String prototype that returns a
+random alphanumeric string. This function should take one parameter,
+length, which is the number of characters in the resulting string.
+
+
+
+
+Answer:
+see test8.html console output
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Question 9: Write a function which takes a string and returns a new string with all instances of a 5 five letter word followed by another 5 letter word with “Lorem Ipsum”. Use regular expression(s), unless you love writing extra code.
+
+
+
+
+For instance, given:
+“We all know that Apple sucks ever since March.”
+return:
+“We all know that Lorem Ipsum ever Lorem Ipsum.”
+
+
+Answer:
+see test9.html console output
